@@ -5,50 +5,53 @@ void solve(){
     cin>>n;
      int st = 1;
      int end = n;
-    while(st <= end)
+    while(st <= end && st >= 1)
     {
         int mid = (st+end)/2;
-        vector<char> reply(5);
+        char prev;
+        char cur;
+        char finalreply;
         cout<<mid<<endl;
-        cin>>reply[0];
-        if(reply[0] == 'E')
+        cin>>cur;
+        if(cur == 'E')
             break;
-        cout<<mid<<endl;
-        cin>>reply[1];
-         if(reply[1] == 'E')
-            break;
-        cout<<mid<<endl;
-        cin>>reply[2];
-         if(reply[2] == 'E')
-            break;
-        cout<<st<<endl;
-        cin>>reply[3]; 
-        if(reply[3] == 'E')
-            break;
-        cout<<st<<endl;
-        cin>>reply[4]; 
-        if(reply[4] == 'E')
-            break;
-        char finalreply = reply[0];
-        if(reply[0] == reply[1])
+        int flag = 1;
+        for(int i = 1; i <= 4 && flag; i++)
         {
-            finalreply = reply[0];
-        }
-        else if(reply[1] == reply[2])
-        {
-            finalreply = reply[1];
-        }
-        else if(reply[3] == 'L' && )//false
-        {
-            finalreply = reply[2];
-        }
-        else if(reply[3] == 'G')
-        {
-            finalreply = reply[1];
+            prev = cur;
+            cout<<st<<endl;
+            cin>>cur;
+            if(cur == 'L')
+            {
+                finalreply = prev;
+                break;
+            }
+            for(int j = 0; j < i && flag; j++)
+            {
+                prev = cur;
+                cout<<mid<<endl;
+                cin>>cur;
+                if(prev == cur)
+                {
+                    finalreply = prev;
+                    flag = 0;
+                    break;
+                }
+                else if(cur =='E')
+                {
+                    finalreply = 'E';
+                    flag = 0;
+                    break;
+                }
+            }
         }
         if(finalreply == 'G')
         {
             st = mid+1;
+        }
+        else if(finalreply == 'E')
+        {
+            break;
         }
         else
         {
